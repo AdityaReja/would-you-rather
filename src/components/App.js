@@ -1,5 +1,6 @@
-import React, {Component} from 'react'
+import React, { Component , Fragment} from 'react'
 import Login from '../components/login';
+import LoggedIn from '../components/LoggedIn'
 import { handleInitialData } from '../actions/shared';
 import { connect } from 'react-redux';
 
@@ -7,11 +8,19 @@ class App extends Component {
     componentDidMount() {
         this.props.dispatch(handleInitialData());
     }
-    render () {
+    render() {
+        const {authUsers} = this.props
         return (
-            <Login/>
-        )
+            <Fragment>
+                {!authUsers ? <Login /> : <LoggedIn />}
+            </Fragment>);
     }
- }
+}
 
- export default connect()(App);
+function mapStatetoProp({ authUsers }) {
+    return {
+        authUsers
+    }
+}
+
+export default connect(mapStatetoProp)(App)

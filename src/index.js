@@ -7,6 +7,7 @@ import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import combineReducers from './reducers'
 import middleware from './middleware'
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 export const store = createStore(combineReducers, middleware)
 
